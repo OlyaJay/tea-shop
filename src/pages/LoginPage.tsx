@@ -14,6 +14,8 @@ const LoginPage = () => {
         try {
             const user = await loginUser(formData);
             dispatch(setUser(user));
+            console.log('login');
+            
             navigate("/");
         } catch (error) {
             console.error("Error", error);

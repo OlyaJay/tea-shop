@@ -1,26 +1,25 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../api/auth";
-import { setUser } from "../redux/authSlice";
 
 const RegisterPage = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: "",
         name: "",
     });
+    const [error, setError]= useState(null)
 
     const handleRegistre = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError(null)
         try {
-            const user = await registerUser(formData);
-            dispatch(setUser(user));
+            await registerUser(formData);
             navigate("/");
-        } catch (error) {
-            console.error(error);
+        } catch (error:any) {
+        
+            setError(error.response.data.error)
         }
     };
 
@@ -30,9 +29,10 @@ const RegisterPage = () => {
 
     return (
         <form onSubmit={handleRegistre}>
-            <input type="text" name="name" value={formData.name} onChange={handleChange}/>
             <input type="text" name="email" value={formData.email} onChange={handleChange}/>
-            <input type="text" name="" value={formData.password} onChange={handleChange}/>
+            {error && <p>{error}</p>}
+            <input type="text" name="name" value={formData.name} onChange={handleChange}/>
+            <input type="text" name="password" value={formData.password} onChange={handleChange}/>
             <button type="submit">Sing up</button>
         </form>
     );
