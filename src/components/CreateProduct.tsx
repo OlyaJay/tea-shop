@@ -3,10 +3,10 @@ import { createProduct } from "../api/product";
 
 const CreateProduct = () => {
 const [formData, setFormData]= useState({
-    name: "",
-    description: "",
+    product_name: "",
+    product_desctiption: "",
     price: "",
-    image: ""
+    product_image: ""
 })
 const [error, setError] = useState(null)
 
@@ -21,13 +21,13 @@ const handleSubmit = async (e: React.FormEvent) => {
     
     try {
         await createProduct({
-            name: formData.name,
-            desctiption: formData.description,
+            product_name: formData.product_name,
+            product_desctiption: formData.product_desctiption,
             price: Number(formData.price),
-            image: formData.image
+            product_image: formData.product_image
         })
 
-        setFormData({name: "", description: "", price: "", image: ""})
+        setFormData({product_name: "", product_desctiption: "", price: "", product_image: ""})
     } catch(error:any){
         setError(error.response.data.error)
     }
@@ -37,14 +37,14 @@ const handleSubmit = async (e: React.FormEvent) => {
   return (
     <form>
         <label>Name: </label>
-        <input type="text" />
+        <input type="text" name="product_name" onChange={handleChange}/>
         <label>Desctiption: </label>
-        <textarea/>
+        <textarea name="product_desctiption" onChange={handleChange}/>
         <label>Price: </label>
-        <input type="text" />
+        <input type="text" name="price" onChange={handleChange}/>
         <label>Image: </label>
-        <input type="text" />
-        <button>Add product</button>
+        <input type="text" name="product_image" onChange={handleChange}/>
+        <button onClick={handleSubmit}>Add product</button>
     </form>
   )
 }
