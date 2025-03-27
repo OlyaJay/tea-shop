@@ -9,3 +9,8 @@ export const fetchProduct = async() => {
     const responce = await api.get("/products")
     return responce.data
 }
+
+export const searchProduct = async(search:string)=>{
+    const responce = await api.get(`/products/search?q=${search}`)
+    return responce.data
+}
