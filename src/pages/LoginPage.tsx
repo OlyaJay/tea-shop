@@ -14,6 +14,7 @@ const LoginPage = () => {
         try {
             const user = await loginUser(formData);
             dispatch(setUser(user));
+            localStorage.setItem("user", JSON.stringify(user))
             console.log("login");
 
             navigate("/");
