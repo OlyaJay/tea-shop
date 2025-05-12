@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import { deleteProduct, fetchProductById } from "../api/product"
 import { Product } from "../pages/HomePage"
 import Loading from "./Loading"
-import { useState } from "react"
 import { addCart } from "../api/cart"
 
 const ProductPage = () => {
@@ -49,6 +48,7 @@ const ProductPage = () => {
                 <p id="price" className="text-xl font-bold">{product?.price}грн</p>
                 <button onClick={()=>product && addMutation.mutate({productId:product?.id, quantity:1})}>Додати в кошик</button>
                 <button onClick={()=>id && mutation.mutate(id)}>Видалити товар</button>
+                <button onClick={()=>id && navigate(`/product/upd/${id}`)}>Оновити товар</button>
             </div>
         </div>
         <div>

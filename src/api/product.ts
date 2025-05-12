@@ -24,6 +24,18 @@ export const fetchProduct = async (filters: {
     return responce.data;
 };
 
+export const updProduct = async (id: string, productData: {
+    product_name: string;
+    product_desctiption: string;
+    price: number;
+    product_image: string;
+    category: string;
+    quatity: string;
+}) => {
+    const responce = await api.post(`/products/up/${id}`, productData)
+    return responce.data;
+}
+
 
 
 export const searchProduct = async (search: string) => {

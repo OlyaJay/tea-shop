@@ -9,8 +9,12 @@ interface UserData {
     } | null
 }
 
+const initialUser = localStorage.getItem("user")
+? JSON.parse(localStorage.getItem("user") as string)
+: null
+
 const initialState: UserData = {
-    user: null
+    user: initialUser
 }
 
 const authSlice = createSlice({
@@ -19,6 +23,7 @@ const authSlice = createSlice({
     reducers: {
         setUser(state, action){
             state.user = action.payload
+            localStorage.setItem("user", JSON.stringify(action.payload))
         },
         logout(state){
             state.user = null
