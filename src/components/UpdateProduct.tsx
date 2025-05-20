@@ -7,7 +7,7 @@ import ProductForm from "./ProductForm";
 
 const UpdateProduct = () => {
     const { id } = useParams();
-      const navigate = useNavigate();
+
     const queryClient = useQueryClient();
     const [formData, setFormData] = useState({
         product_name: "",
@@ -71,7 +71,7 @@ const UpdateProduct = () => {
         navigate("/")
     };
 
-    return <ProductForm handleSubmit={handleSubmit} handleChange={handleChange} formData={formData} buttonText={"Update"}/>;
+    return <ProductForm onSubmit={handleSubmit} handleChange={handleChange} formData={formData} buttonText={"Update"}/>;
 };
 
 export default UpdateProduct;

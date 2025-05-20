@@ -1,13 +1,7 @@
+import { PrdocutFormData } from "../validation/productValidate";
 import { api } from "./axiosInstance";
 
-export const createProduct = async (productData: {
-    product_name: string;
-    product_desctiption: string;
-    price: number;
-    product_image: string;
-    category: string;
-    quatity: string;
-}) => {
+export const createProduct = async (productData:PrdocutFormData) => {
     const responce = await api.post("/products/create", productData);
     return responce.data;
 };
